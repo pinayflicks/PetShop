@@ -307,7 +307,13 @@ router.post(`/signup`, async (req, res) => {
       await user.save();
     }
 
-    
+    // Send verification email
+    const resp = sendEmailFun(
+      email,
+      "Verify Email",
+      "",
+      "Your OTP is " + verifyCode
+    );
 
     // Create a JWT token for verification purposes
     const token = jwt.sign(
